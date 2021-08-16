@@ -1,0 +1,17 @@
+<resources xmlns:tools="http://schemas.android.com/tools">
+    <!-- Base application theme. -->
+    <style name="Theme.MachineRentalManagementMobile" parent="Theme.MaterialComponents.DayNight.DarkActionBar">
+        <!-- Primary brand color. -->
+        <item name="colorPrimary">@color/primaryColorNight</item>
+        <item name="colorPrimaryVariant">@color/primaryDarkColorNight</item>
+        <item name="colorOnPrimary">@color/primaryTextColorNight</item>
+        <!-- Secondary brand color. -->
+        <item name="colorSecondary">@color/secondaryColorNight</item>
+        <item name="colorSecondaryVariant">@color/secondaryDarkColorNight</item>
+        <item name="colorOnSecondary">@color/secondaryTextColorNight</item>
+        <!-- Status bar color. -->
+        <item name="android:statusBarColor" tools:targetApi="l">?attr/colorPrimaryVariant</item>
+        <!-- Customize your theme here. -->
+        <item name="android:textColor">@color/textColorNightTheme</item>
+    </style>
+</resources>

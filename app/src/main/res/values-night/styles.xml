@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <style name="AppTheme" parent="Theme.MaterialComponents.Light.NoActionBar">
+        <item name="colorPrimary">@color/primaryColor</item>
+        <item name="colorPrimaryDark">@color/primaryColorNight</item>
+        <item name="colorAccent">@color/secondaryColor</item>
+        <item name="android:colorBackground">@color/backgroundColorNight</item>
+        <item name="android:windowLightStatusBar">true</item>
+    </style>
+
+    <style name="AppTheme.FullScreenDialog" parent="Theme.MaterialComponents.DayNight.Dialog">
+        <item name="colorAccent">@color/secondaryColorNight</item>
+        <item name="colorPrimary">@color/backgroundColorNight</item>
+        <item name="colorPrimaryDark">@color/primaryDarkColorNight</item>
+        <item name="android:windowIsFloating">false</item>
+        <item name="android:windowBackground">@color/backgroundColorNight</item>
+        <item name="actionMenuTextColor">@color/primaryColorNight</item>
+    </style>
+
+    <style name="AppTheme.Slide">
+        <item name="android:windowEnterAnimation">@anim/slide_up</item>
+        <item name="android:windowExitAnimation">@anim/slide_down</item>
+    </style>
+</resources>

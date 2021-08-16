@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--TODO: DO NOT SHIP - Used only during initial development process, remove this once SSL is enabled on the backend-->
+<network-security-config>
+    <domain-config cleartextTrafficPermitted="true">
+        <domain includeSubdomains="true">10.0.2.2</domain>
+    </domain-config>
+</network-security-config>
