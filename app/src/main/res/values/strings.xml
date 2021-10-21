@@ -33,6 +33,7 @@
     <string name="machineStatusInventory">On inventory</string>
     <string name="machineStatusMaintenance">In maintenance</string>
     <string name="machineStatusReadyForRental">Ready for rental</string>
+    <string name="machineStatusRented">Rented</string>
     <string name="machineStatusCustomer">With a customer</string>
     <string name="True">True</string>
     <string name="False">False</string>

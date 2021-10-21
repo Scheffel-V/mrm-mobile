@@ -23,7 +23,7 @@
     <string name="eventInventory">Indo para o inventário</string>
     <string name="eventCustomer">Indo para cliente</string>
     <string name="eventMaintenance">Indo para manutenção</string>
-    <string name="eventReadyToRent">Marcar como pronto para alugar</string>
+    <string name="eventReadyToRent">Marcar como pronto para sair</string>
     <string name="eventFlagNeedsMaintenance">Marcar como precisando de manutenção</string>
     <string name="eventComment">Adicione um comentário para esse registro (opcional)</string>
     <string name="machinePressure">Pressão</string>
@@ -33,7 +33,8 @@
     <string name="machineSerialNumber">Número de série</string>
     <string name="machineStatusInventory">No inventário</string>
     <string name="machineStatusMaintenance">Em manutenção</string>
-    <string name="machineStatusReadyForRental">Pronto para aluguel</string>
+    <string name="machineStatusReadyForRental">Pronto para sair</string>
+    <string name="machineStatusRented">Alugado</string>
     <string name="machineStatusCustomer">Com um cliente</string>
     <string name="True">Verdadeiro</string>
     <string name="False">Falso</string>
