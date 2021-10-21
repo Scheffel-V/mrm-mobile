@@ -81,7 +81,7 @@ public class EquipmentInfoActivity extends AppCompatActivity
                 return getResources().getString(R.string.machineStatusMaintenance);
             case "READY_FOR_RENTAL":
                 return getResources().getString(R.string.machineStatusReadyForRental);
-            case "CUSTOMER":
+            case "RENTED":
                 return getResources().getString(R.string.machineStatusCustomer);
             default:
                 // TODO: Improve error handling

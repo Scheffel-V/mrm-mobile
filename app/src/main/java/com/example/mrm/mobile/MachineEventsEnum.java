@@ -3,7 +3,7 @@ package com.example.mrm.mobile;
 public enum MachineEventsEnum {
     NONE,
     INVENTORY,
-    CUSTOMER,
+    RENTED,
     MAINTENANCE,
     READY_FOR_RENTAL
 }
