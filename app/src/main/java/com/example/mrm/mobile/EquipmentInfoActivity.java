@@ -7,6 +7,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.util.JsonWriter;
 import android.util.Log;
+import android.widget.Button;
 import android.widget.TextView;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
@@ -64,6 +65,12 @@ public class EquipmentInfoActivity extends AppCompatActivity
         fab.setOnClickListener(view -> {
             // Show dialog in full screen
             RegisterMachineEventDialogFragment.display(getSupportFragmentManager());
+        });
+
+        // Button for registering an event that changes the machine status, like arrival or departure
+        FloatingActionButton fab2 = findViewById(R.id.goBackButton);
+        fab2.setOnClickListener(view -> {
+            finish();
         });
     }
 

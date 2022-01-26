@@ -16,21 +16,42 @@ import android.app.Activity;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.os.Bundle;
+import android.util.JsonReader;
 import android.view.View;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ProgressBar;
 import android.widget.TextView;
+import android.widget.Toast;
 
+import com.example.mrm.mobile.model.Login;
+import com.example.mrm.mobile.model.User;
+import com.example.mrm.mobile.service.UserClient;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.snackbar.Snackbar;
 
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
+import retrofit2.Retrofit;
+import retrofit2.converter.gson.GsonConverterFactory;
+
 public class MainActivity extends AppCompatActivity {
+    Retrofit.Builder builder = new Retrofit.Builder()
+            .baseUrl("https://www.gma-admin.com/")
+            .addConverterFactory(GsonConverterFactory.create());
+
+    Retrofit retrofit = builder.build();
+    UserClient userClient = retrofit.create(UserClient.class);
+    String token;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        doLogin();
 
         // Floating action button that leads to the camera view for scanning a QR Code
         FloatingActionButton fab = findViewById(R.id.cameraFAB);
@@ -93,6 +114,28 @@ public class MainActivity extends AppCompatActivity {
                 }
             });
 
+    private void doLogin() {
+        Login login = new Login("dev", "dev");
+        Call<User> call = userClient.login(login);
+
+        call.enqueue(new Callback<User>() {
+            @Override
+            public void onResponse(Call<User> call, Response<User> response) {
+                if (response.isSuccessful()) {
+                    launchOperationResultActivity(true, "Logado!");
+                    token = response.body().getToken();
+                } else {
+                    launchOperationResultActivity(false, "Usuário ou senha incorretos.");
+                }
+            }
+
+            @Override
+            public void onFailure(Call<User> call, Throwable t) {
+                launchOperationResultActivity(false, "Erro ao executar login.");
+            }
+        });
+    }
+
     private void getMachineInfoFromBackend(String machineCode) {
         // Observer to wait for backend task response
         Observer<WorkInfo> observer = workInfo -> {
@@ -115,6 +158,7 @@ public class MainActivity extends AppCompatActivity {
         // Information for the backend worker
         Data inputData = new Data.Builder()
                 .putString(BackendConnectionWorker.ITEM_CODE, machineCode)
+                .putString(BackendConnectionWorker.TOKEN, token)
                 .putString(BackendConnectionWorker.CONNECTION_TYPE, BackendConnectionTypeEnum.GET_MACHINE_INFO.toString())
                 .build();
         launchBackendConnectionWorker(inputData, observer);
@@ -176,6 +220,7 @@ public class MainActivity extends AppCompatActivity {
         // Information for the backend worker
         Data inputData = new Data.Builder()
                 .putString(BackendConnectionWorker.ITEM_CODE, machineCode)
+                .putString(BackendConnectionWorker.TOKEN, token)
                 .putString(BackendConnectionWorker.ITEM_INFO, machineDataJSON)
                 .putString(BackendConnectionWorker.CONNECTION_TYPE, BackendConnectionTypeEnum.UPDATE_MACHINE_INFO.toString())
                 .build();

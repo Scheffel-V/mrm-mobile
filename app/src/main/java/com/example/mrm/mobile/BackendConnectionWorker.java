@@ -2,6 +2,7 @@ package com.example.mrm.mobile;
 
 import android.content.Context;
 import android.util.Log;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.work.Data;
@@ -25,6 +26,7 @@ public class BackendConnectionWorker extends Worker {
     public static final String ITEM_INFO = "info";
     public static final String CONNECTION_TYPE = "type";
     public static final String WORKER_RESULT = "result";
+    public static final String TOKEN = "token";
     public static final MediaType JSON = MediaType.get("application/json; charset=utf-8");
 
     private static final String BACKEND_ERROR_MESSAGE_KEY = "message";
@@ -41,24 +43,27 @@ public class BackendConnectionWorker extends Worker {
     public Result doWork() {
         Data inputData = getInputData();
 
+        // Checks which connection to make to the backend
+        String connectionType = inputData.getString(CONNECTION_TYPE);
+        String token = inputData.getString(TOKEN);
+
+        if (connectionType == null || token == null || token.isEmpty()) {
+            return Result.failure();
+        }
+
         // Gets the machine code
         String machineCode = inputData.getString(ITEM_CODE);
         if (machineCode == null) {
             return Result.failure();
         }
 
-        // Checks which connection to make to the backend
-        String connectionType = inputData.getString(CONNECTION_TYPE);
-        if (connectionType == null) {
-            return Result.failure();
-        }
-
         // TODO: Update references to backend endpoint
-        String backendEndpoint = "http://10.0.2.2:3134/api/stockItems/code/" + machineCode;
+        String backendEndpoint = "https://www.gma-admin.com/api/stockItems/code/" + machineCode;
 
         if (connectionType.equals(BackendConnectionTypeEnum.GET_MACHINE_INFO.toString())) {
             Request request = new Request.Builder()
                     .url(backendEndpoint)
+                    .addHeader("authorization", "Bearer " + token)
                     .build();
 
             return executeRequest(request);
@@ -75,6 +80,7 @@ public class BackendConnectionWorker extends Worker {
 
             Request request = new Request.Builder()
                     .url(backendEndpoint)
+                    .header("authorization", "Bearer " + token)
                     .put(body)
                     .build();
 

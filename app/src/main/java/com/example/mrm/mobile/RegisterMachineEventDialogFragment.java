@@ -58,12 +58,12 @@ public class RegisterMachineEventDialogFragment extends DialogFragment {
         // Set radio button events to save last selected position
         RadioButton radioEventInventory = rootView.findViewById(R.id.radioEventInventory);
         radioEventInventory.setOnClickListener(view -> SelectedEventOption = MachineEventsEnum.INVENTORY);
+        RadioButton radioEventReadyToRent = rootView.findViewById(R.id.radioEventReadyToRent);
+        radioEventReadyToRent.setOnClickListener(view -> SelectedEventOption = MachineEventsEnum.READY_FOR_RENTAL);
         RadioButton radioEventCustomer = rootView.findViewById(R.id.radioEventCustomer);
         radioEventCustomer.setOnClickListener(view -> SelectedEventOption = MachineEventsEnum.CUSTOMER);
         RadioButton radioEventMaintenance = rootView.findViewById(R.id.radioEventMaintenance);
         radioEventMaintenance.setOnClickListener(view -> SelectedEventOption = MachineEventsEnum.MAINTENANCE);
-        RadioButton radioEventReadyToRent = rootView.findViewById(R.id.radioEventReadyToRent);
-        radioEventReadyToRent.setOnClickListener(view -> SelectedEventOption = MachineEventsEnum.READY_FOR_RENTAL);
 
         // Set checkbox event to save state
         CheckBox needsMaintenanceCheckBox = rootView.findViewById(R.id.checkBoxEventFlagNeedsMaintenance);

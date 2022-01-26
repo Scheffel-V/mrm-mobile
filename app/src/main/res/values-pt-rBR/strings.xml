@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="appName">Machine Rental Management Mobile</string>
+    <string name="appName">GMA Compressores e Geradores</string>
     <string name="qrCodeCameraButton">Abrir tela da câmera para escanear o código QR</string>
     <string name="progressText">Carregando…</string>
     <string name="mainInstructionsString">Digite o código da máquina ou escaneie o QR Code com o botão abaixo</string>
     <string name="searchButtonString">Buscar</string>
     <string name="editTextMachineCodeHint">Digite o código da máquina</string>
-    <string name="machineInfoTextViewPlaceholder">Placeholder</string>
+    <string name="machineInfoTextViewPlaceholder">Informaçoões da Máquina</string>
     <string name="machineCode">Código da máquina</string>
     <string name="machineName">Nome</string>
     <string name="machineType">Tipo</string>
@@ -19,12 +19,12 @@
     <string name="machineComment">Último comentário</string>
     <string name="registerEventDialogTitle">Registrar evento</string>
     <string name="registerEventDialogSave">Salvar</string>
-    <string name="registerEventDialogRadioText">Selecione o evento a ser registrado</string>
+    <string name="registerEventDialogRadioText">Selecione o evento</string>
     <string name="eventInventory">Indo para o inventário</string>
-    <string name="eventCustomer">Indo para cliente</string>
+    <string name="eventCustomer">Indo para o cliente</string>
     <string name="eventMaintenance">Indo para manutenção</string>
-    <string name="eventReadyToRent">Marcar como pronto para sair</string>
-    <string name="eventFlagNeedsMaintenance">Marcar como precisando de manutenção</string>
+    <string name="eventReadyToRent">Máquina pronta para sair</string>
+    <string name="eventFlagNeedsMaintenance">Máquina precisando de manutenção</string>
     <string name="eventComment">Adicione um comentário para esse registro (opcional)</string>
     <string name="machinePressure">Pressão</string>
     <string name="machineThroughput">Vazão</string>
