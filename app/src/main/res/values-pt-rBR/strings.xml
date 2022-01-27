@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="appName">GMA Compressores e Geradores</string>
+    <string name="appName">GMA</string>
     <string name="qrCodeCameraButton">Abrir tela da câmera para escanear o código QR</string>
     <string name="progressText">Carregando…</string>
     <string name="mainInstructionsString">Digite o código da máquina ou escaneie o QR Code com o botão abaixo</string>

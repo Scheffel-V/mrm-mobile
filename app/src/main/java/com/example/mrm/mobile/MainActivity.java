@@ -1,5 +1,7 @@
 package com.example.mrm.mobile;
 
+import androidx.activity.result.ActivityResult;
+import androidx.activity.result.ActivityResultCallback;
 import androidx.activity.result.ActivityResultLauncher;
 import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.appcompat.app.AppCompatActivity;
@@ -16,6 +18,7 @@ import android.app.Activity;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.os.Bundle;
+import android.os.Handler;
 import android.util.JsonReader;
 import android.view.View;
 import android.view.inputmethod.InputMethodManager;
@@ -122,16 +125,16 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onResponse(Call<User> call, Response<User> response) {
                 if (response.isSuccessful()) {
-                    launchOperationResultActivity(true, "Logado!");
+                    launchLoginResultActivity(true, "Logado!");
                     token = response.body().getToken();
                 } else {
-                    launchOperationResultActivity(false, "Usuário ou senha incorretos.");
+                    launchLoginResultActivity(false, "Usuário ou senha incorretos.");
                 }
             }
 
             @Override
             public void onFailure(Call<User> call, Throwable t) {
-                launchOperationResultActivity(false, "Erro ao executar login.");
+                launchLoginResultActivity(false, "Erro ao executar login.");
             }
         });
     }
@@ -195,6 +198,34 @@ public class MainActivity extends AppCompatActivity {
         intent.putExtra(OperationResultActivity.RESULT_KEY, success);
         intent.putExtra(OperationResultActivity.MESSAGE_KEY, detailedMessage);
         startActivity(intent);
+    }
+
+    ActivityResultLauncher<Intent> launchSomeActivity = registerForActivityResult(
+            new ActivityResultContracts.StartActivityForResult(),
+            new ActivityResultCallback<ActivityResult>() {
+                @Override
+                public void onActivityResult(ActivityResult result) {
+                    if (result.getResultCode() == Activity.RESULT_OK) {
+                        Intent data = result.getData();
+
+                        if (data.getStringExtra("logged").equals("false")) {
+                            Handler handler = new Handler();
+                            handler.postDelayed(new Runnable() {
+                                public void run() {
+                                    doLogin();
+                                }
+                            }, 3000);   //5 seconds
+                        }
+                    }
+                }
+            });
+
+    void launchLoginResultActivity(boolean success, String detailedMessage) {
+        Intent intent = new Intent(this, LoginResultActivity.class);
+        intent.putExtra(LoginResultActivity.RESULT_KEY, success);
+        intent.putExtra(LoginResultActivity.MESSAGE_KEY, detailedMessage);
+
+        launchSomeActivity.launch(intent);
     }
 
     private void updateMachineInfoOnBackend(String machineCode, String machineDataJSON) {

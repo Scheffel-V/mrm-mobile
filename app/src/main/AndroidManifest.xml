@@ -17,6 +17,7 @@
         android:theme="@style/Theme.MachineRentalManagementMobile"
         android:allowBackup="true">
         <activity android:name=".OperationResultActivity" />
+        <activity android:name=".LoginResultActivity" />
         <activity android:name=".EquipmentInfoActivity" />
         <activity android:name=".CameraActivity" />
         <activity android:name=".MainActivity">

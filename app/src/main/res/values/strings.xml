@@ -1,5 +1,5 @@
 <resources>
-    <string name="appName">GMA Compressores e Geradores</string>
+    <string name="appName">GMA</string>
     <string name="qrCodeCameraButton">Open camera view for QR Code scanning</string>
     <string name="progressText">Loading…</string>
     <string name="mainInstructionsString">Type in the machine code or scan its QR Code with the button below</string>
