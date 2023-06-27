@@ -14,5 +14,6 @@ public enum StockItemFields {
     throughput,
     voltage,
     year,
-    serialNumber
+    serialNumber,
+    stockItemEvents
 }

@@ -84,7 +84,7 @@ public class MainActivity extends AppCompatActivity {
             // Get the typed in machine code, validate and start backend connection process
             EditText editTextMachineCode = findViewById(R.id.editTextMachineCode);
             String machineCode = editTextMachineCode.getText().toString();
-            if (!machineCode.isEmpty() && machineCode.matches("[A-Za-z0-9]+")) {
+            if (!machineCode.isEmpty() && machineCode.matches("[A-Za-z0-9_ ]+")) {
                 getMachineInfoFromBackend(machineCode);
             } else {
                 View mainView = findViewById(R.id.mainLayout);

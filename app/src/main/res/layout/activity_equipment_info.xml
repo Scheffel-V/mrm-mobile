@@ -26,6 +26,19 @@
             app:srcCompat="@android:drawable/ic_menu_send" />
 
         <com.google.android.material.floatingactionbutton.FloatingActionButton
+            android:id="@+id/seeCommentHistory"
+            android:layout_width="224dp"
+            android:layout_height="0dp"
+            android:layout_marginBottom="16dp"
+            android:clickable="true"
+            android:contentDescription="@string/seeCommentHistoryButton"
+            android:focusable="true"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:srcCompat="@android:drawable/ic_menu_recent_history" />
+
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
             android:id="@+id/goBackButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"

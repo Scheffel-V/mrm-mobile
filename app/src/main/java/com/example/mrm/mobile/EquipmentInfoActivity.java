@@ -2,20 +2,31 @@ package com.example.mrm.mobile;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.DialogFragment;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.JsonWriter;
 import android.util.Log;
-import android.widget.Button;
 import android.widget.TextView;
 
+import com.example.mrm.mobile.adapter.CommentHistoryAdapter;
+import com.example.mrm.mobile.model.CommentHistory;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
+import com.google.gson.Gson;
+import com.google.gson.internal.LinkedTreeMap;
 
 import java.io.StringWriter;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.List;
 
 public class EquipmentInfoActivity extends AppCompatActivity
-        implements RegisterMachineEventDialogFragment.NoticeDialogListener {
+        implements RegisterMachineEventDialogFragment.NoticeDialogListener,
+        CommentHistoryDialogFragment.NoticeDialogListener {
     public static String TAG = "equipment_info_activity";
 
     public static final String MACHINE_CODE = "machine_code";
@@ -24,6 +35,9 @@ public class EquipmentInfoActivity extends AppCompatActivity
     public static final String ERROR_MESSAGE = "error_message";
 
     private StockItem mStockItem;
+    CommentHistoryAdapter adapter;
+    RecyclerView recyclerView;
+    List<CommentHistory> commentHistoryList = new ArrayList<>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -55,6 +69,34 @@ public class EquipmentInfoActivity extends AppCompatActivity
         outputBuilder.append(getResources().getString(R.string.machineStatus)).append(": ").append(statusToReadableText(mStockItem.infoMap.get(StockItemFields.status))).append("\n");
         outputBuilder.append(getResources().getString(R.string.machineMaintenanceNeeded)).append("? ").append(booleanToReadableText(mStockItem.infoMap.get(StockItemFields.needsMaintenance))).append("\n");
         outputBuilder.append(getResources().getString(R.string.machineComment)).append(": ").append(mStockItem.infoMap.get(StockItemFields.comment)).append("\n");
+        String str = mStockItem.infoMap.get(StockItemFields.stockItemEvents);
+        Object obj = new Gson().fromJson(str, Object.class);
+
+        int count = 0;
+        for (Object objAux: ((ArrayList<Object>) obj)) {
+            String comment = (String) ((LinkedTreeMap) objAux).get("comment");
+            String dateStr = (String) ((LinkedTreeMap) objAux).get("createdAt");
+            SimpleDateFormat inputFormat = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSS'Z'");
+            SimpleDateFormat outputFormat = new SimpleDateFormat("dd/MM/yyyy");
+
+            if (comment == null) {
+                continue;
+            }
+
+            count++;
+
+            try {
+                assert dateStr != null;
+                Date date = inputFormat.parse(dateStr);
+                String event = (String) ((LinkedTreeMap) objAux).get("status");
+                event = statusToReadableText(event);
+                String string = outputFormat.format(date) + " " + comment;
+                CommentHistory commentHistory = new CommentHistory(outputFormat.format(date), event, comment);
+                this.commentHistoryList.add(commentHistory);
+            } catch (ParseException e) {
+                e.printStackTrace();
+            }
+        }
 
         // Writes it to the main textview
         TextView infoTextView = findViewById(R.id.infoTextView);
@@ -65,6 +107,13 @@ public class EquipmentInfoActivity extends AppCompatActivity
         fab.setOnClickListener(view -> {
             // Show dialog in full screen
             RegisterMachineEventDialogFragment.display(getSupportFragmentManager());
+        });
+
+        // Button for comment history
+        FloatingActionButton fabCommentHistory = findViewById(R.id.seeCommentHistory);
+        fabCommentHistory.setOnClickListener(view -> {
+            // Show dialog in full screen
+            CommentHistoryDialogFragment.display(getSupportFragmentManager());
         });
 
         // Button for registering an event that changes the machine status, like arrival or departure
@@ -86,6 +135,8 @@ public class EquipmentInfoActivity extends AppCompatActivity
                 return getResources().getString(R.string.machineStatusInventory);
             case "MAINTENANCE":
                 return getResources().getString(R.string.machineStatusMaintenance);
+            case "RESERVED":
+                getResources().getString(R.string.machineStatusReserved);
             case "RENTED":
                 return getResources().getString(R.string.machineStatusRented);
             case "READY_FOR_RENTAL":
@@ -175,5 +226,9 @@ public class EquipmentInfoActivity extends AppCompatActivity
         }
 
         return updateJSON;
+    }
+
+    public List<CommentHistory> getComments() {
+        return this.commentHistoryList;
     }
 }

@@ -1,6 +1,10 @@
 <resources>
     <string name="appName">GMA</string>
     <string name="qrCodeCameraButton">Open camera view for QR Code scanning</string>
+    <string name="seeCommentHistoryButton">Open Comment History view</string>
+    <string name="comment">Comment</string>
+    <string name="date">Date</string>
+    <string name="event">Event</string>
     <string name="progressText">Loading…</string>
     <string name="mainInstructionsString">Type in the machine code or scan its QR Code with the button below</string>
     <string name="searchButtonString">Search</string>
@@ -16,6 +20,7 @@
     <string name="machineMaintenanceNeeded">Maintenance needed</string>
     <string name="machineActive">Active</string>
     <string name="machineComment">Last comment</string>
+    <string name="commentHistoryDialogTitle">Comment History</string>
     <string name="registerEventDialogTitle">Register event</string>
     <string name="registerEventDialogSave">Save</string>
     <string name="registerEventDialogRadioText">Select the event to be registered</string>
@@ -31,6 +36,7 @@
     <string name="machineYear">Year</string>
     <string name="machineSerialNumber">Serial Number</string>
     <string name="machineStatusInventory">On inventory</string>
+    <string name="machineStatusReserved">Reserved</string>
     <string name="machineStatusMaintenance">In maintenance</string>
     <string name="machineStatusReadyForRental">Ready for rental</string>
     <string name="machineStatusRented">Rented</string>

@@ -2,6 +2,10 @@
 <resources>
     <string name="appName">GMA</string>
     <string name="qrCodeCameraButton">Abrir tela da câmera para escanear o código QR</string>
+    <string name="seeCommentHistoryButton">Abrir a tela do Histórico de Comentários</string>
+    <string name="comment">Comentário</string>
+    <string name="date">Data</string>
+    <string name="event">Evento</string>
     <string name="progressText">Carregando…</string>
     <string name="mainInstructionsString">Digite o código da máquina ou escaneie o QR Code com o botão abaixo</string>
     <string name="searchButtonString">Buscar</string>
@@ -17,10 +21,11 @@
     <string name="machineMaintenanceNeeded">Manutenção necessária</string>
     <string name="machineActive">Ativa</string>
     <string name="machineComment">Último comentário</string>
+    <string name="commentHistoryDialogTitle">Histórico de Comentários</string>
     <string name="registerEventDialogTitle">Registrar evento</string>
     <string name="registerEventDialogSave">Salvar</string>
     <string name="registerEventDialogRadioText">Selecione o evento</string>
-    <string name="eventInventory">Indo para o inventário</string>
+    <string name="eventInventory">Indo para o estoque</string>
     <string name="eventCustomer">Indo para o cliente</string>
     <string name="eventMaintenance">Indo para manutenção</string>
     <string name="eventReadyToRent">Máquina pronta para sair</string>
@@ -31,11 +36,12 @@
     <string name="machineVoltage">Tensão</string>
     <string name="machineYear">Ano</string>
     <string name="machineSerialNumber">Número de série</string>
-    <string name="machineStatusInventory">No inventário</string>
+    <string name="machineStatusInventory">No estoque</string>
+    <string name="machineStatusReserved">Reservado</string>
     <string name="machineStatusMaintenance">Em manutenção</string>
     <string name="machineStatusReadyForRental">Pronto para sair</string>
     <string name="machineStatusRented">Alugado</string>
-    <string name="machineStatusCustomer">Com um cliente</string>
+    <string name="machineStatusCustomer">Com o cliente</string>
     <string name="True">Verdadeiro</string>
     <string name="False">Falso</string>
     <string name="stockItemFallbackString">Informação indisponível</string>
